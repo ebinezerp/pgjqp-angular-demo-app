@@ -1,47 +1,52 @@
-This is app component
-<style>
-  .enable {
-    background-color: orange;
-    font-size: 20px;
-  }
+<header>
+  <a>
+    <h1>Phonebook</h1>
+  </a>
+</header>
+<section>
+  <form #contactForm='ngForm' (submit)="addContact(contactForm)">
+    <div>
+      <label for="name">Fullname</label>
+      <input [(ngModel)]="contact.name" type="text" name="name"   id="name" required pattern="[a-zA-Z]{4,}"  #name='ngModel' />
+      <span *ngIf="name.touched">
+        <span *ngIf="name.errors.required">
+          Enter the name
+        </span>
+        <span *ngIf="name.errors.pattern">
+            Enter valid name, name must contain only alphabet and min 4 characters
+        </span>
 
-  .disable {
-    background-color: yellow;
-    font-size: 10px;
-  }
+      </span>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input [(ngModel)]="contact.email" type="text" name="email" id="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
+    </div>
+    <div>
+      <label for="mobile">Mobile</label>
+      <input [(ngModel)]="contact.mobile" type="text" name="mobile" id="mobile" required pattern="[6-9][0-9]{9}" />
+    </div>
+    <div>
+      <input [disabled]='!contactForm.valid' type="submit" value="Add Contact">
+    </div>
+  </form>
+</section>
 
-</style>
-
-
-<input [(ngModel)]='name' type = "text" name="fullname"/>
-<input [(ngModel)]="age" type='text' name='age'/>
-
-<div>
-  <table>
-    <tr>
-      <td>{{name}}</td>
-      <td>{{age}}</td>
-    </tr>
+<section>
+  <table border="1" style="border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let contact of contactList">
+        <td>{{contact.name}}</td>
+        <td>{{contact.email}}</td>
+        <td>{{contact.mobile}}</td>
+      </tr>
+    </tbody>
   </table>
-</div>
-
-
-<!-- <button [ngStyle]="{'background-color': clickHereButtonColor,'font-size': fontSize}" [disabled]='!isActive' >Click Here</button> -->
-
-<button [ngClass]="{enable: isActive, disable:!isActive}" [disabled]='!isActive'>Click Here</button>
-
-<button style='background-color: red;' *ngIf="isActive" (click)="switch()">Disable Click Here</button>
-<button style='background-color: green' *ngIf="!isActive" (click)="switch()">Enable Click Here</button>
-
-<div>
-  {{friendsNames}}
-</div>
-
-<div>
-  <ul>
-    <span *ngFor="let friendName of friendsNames; let i = index">
-      <li *ngIf="friendName!='Jeswanth'">{{i+1}}. {{friendName}}</li>
-    </span>
-  </ul>
-
-</div>
+</section>

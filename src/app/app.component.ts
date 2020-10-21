@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Contact } from './model/contact';
 
 @Component({
   selector: 'app-root',
@@ -6,31 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    name: string = 'geetha';
-    age: number = 15;
-    isActive: boolean = true;
-    //button: string = 'disable';
-    // clickHereButtonColor: string = 'orange';
-    // fontSize: string = '20px';
+  contact: Contact;
+  contactList: Contact[] = [];
 
-    friendsNames: string[] = ['Ashok','Manoj', 'Varam', 'Geetha', 'Jeswanth', 'Surya'];
+  constructor(){
+    this.contact = new Contact();
+  }
 
-    f1(): string {
-      return 'hello';
-    }
 
-    switch(): void{
-      if (this.isActive) {
-          this.isActive = false;
-          //this.button = 'enable';
-          // this.clickHereButtonColor = 'yellow';
-          // this.fontSize = '10px';
-      }else{
-          this.isActive = true;
-          //this.button = 'disable';
-          // this.clickHereButtonColor = 'orange';
-          // this.fontSize = '20px';
-      }
-    }
+  addContact(contactForm: NgForm): void {
+    const contact: Contact = contactForm.value;
+    this.contactList.push(contact);
+    contactForm.resetForm();
+  }
 
 }
