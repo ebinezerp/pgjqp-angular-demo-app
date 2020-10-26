@@ -3,34 +3,8 @@
     <h1>Phonebook</h1>
   </a>
 </header>
-<section>
-  <form #contactForm='ngForm' (submit)="addContact(contactForm)">
-    <div>
-      <label for="name">Fullname</label>
-      <input [(ngModel)]="contact.name" type="text" name="name"   id="name" required pattern="[a-zA-Z]{4,}"  #name='ngModel' />
-      <span *ngIf="name.touched">
-        <span *ngIf="name.errors.required">
-          Enter the name
-        </span>
-        <span *ngIf="name.errors.pattern">
-            Enter valid name, name must contain only alphabet and min 4 characters
-        </span>
 
-      </span>
-    </div>
-    <div>
-      <label for="email">Email</label>
-      <input [(ngModel)]="contact.email" type="text" name="email" id="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
-    </div>
-    <div>
-      <label for="mobile">Mobile</label>
-      <input [(ngModel)]="contact.mobile" type="text" name="mobile" id="mobile" required pattern="[6-9][0-9]{9}" />
-    </div>
-    <div>
-      <input [disabled]='!contactForm.valid' type="submit" value="Add Contact">
-    </div>
-  </form>
-</section>
+<app-add-contact [contact]="selectedContact"  (addingContact)= "addNewContact($event)"></app-add-contact>
 
 <section>
   <table border="1" style="border-collapse: collapse;">
@@ -39,6 +13,8 @@
         <th>Name</th>
         <th>Email</th>
         <th>Mobile</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -46,6 +22,8 @@
         <td>{{contact.name}}</td>
         <td>{{contact.email}}</td>
         <td>{{contact.mobile}}</td>
+        <td><button (click)="editContact(contact)">Edit</button></td>
+        <td><button>Delete</button></td>
       </tr>
     </tbody>
   </table>

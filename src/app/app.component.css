@@ -12,19 +12,7 @@ section{
   justify-content: center;
 }
 
-section>form{
-  width:40%;
-}
-
-section > form > div{
-  display: flex;
-  margin-bottom: 2%;
-}
-
-section>form> div>label{
-  flex:1;
-}
-section>form>div>input{
-  flex:2;
+section> table{
+  width: 60%;
 }
 

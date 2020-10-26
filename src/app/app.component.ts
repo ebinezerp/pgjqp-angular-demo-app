@@ -8,18 +8,19 @@ import { Contact } from './model/contact';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  contact: Contact;
   contactList: Contact[] = [];
+  selectedContact: Contact;
 
   constructor(){
-    this.contact = new Contact();
+    this.selectedContact = new Contact();
   }
 
-
-  addContact(contactForm: NgForm): void {
-    const contact: Contact = contactForm.value;
+  addNewContact(contact: Contact): void {
     this.contactList.push(contact);
-    contactForm.resetForm();
+  }
+
+  editContact(contact: Contact): void {
+    this.selectedContact = contact;
   }
 
 }
