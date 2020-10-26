@@ -4,7 +4,7 @@
   </a>
 </header>
 
-<app-add-contact [contact]="selectedContact"  (addingContact)= "addNewContact($event)"></app-add-contact>
+<app-add-contact [edit]="edit" [editContact]="selectedContact" (updatingContact)="updateContact($event)" (addingContact)= "addNewContact($event)"></app-add-contact>
 
 <section>
   <table border="1" style="border-collapse: collapse;">

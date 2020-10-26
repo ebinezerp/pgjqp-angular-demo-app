@@ -1,5 +1,5 @@
 <section>
-  <form #contactForm='ngForm' (submit)="addContact(contactForm)">
+  <form #contactForm='ngForm' (submit)="edit?updateContact(contactForm): addContact(contactForm)">
     <div>
       <label for="name">Fullname</label>
       <input [(ngModel)]="contact.name" type="text" name="name"   id="name" required pattern="[a-zA-Z]{4,}"  #name='ngModel' />
@@ -15,14 +15,15 @@
     </div>
     <div>
       <label for="email">Email</label>
-      <input [(ngModel)]="contact.email" type="text" name="email" id="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
+      <input [disabled]='edit' [(ngModel)]="contact.email" type="text" name="email" id="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
     </div>
     <div>
       <label for="mobile">Mobile</label>
       <input [(ngModel)]="contact.mobile" type="text" name="mobile" id="mobile" required pattern="[6-9][0-9]{9}" />
     </div>
     <div>
-      <input [disabled]='!contactForm.valid' type="submit" value="Add Contact">
+      <input *ngIf="!edit" [disabled]='!contactForm.valid' type="submit" value="Add Contact">
+      <input *ngIf="edit" [disabled]='!contactForm.valid' type="submit" value="Update Contact">
     </div>
   </form>
 </section>
