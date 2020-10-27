@@ -4,5 +4,5 @@
   </a>
 </header>
 
-<app-add-contact></app-add-contact>
-<app-display-contact></app-display-contact>
+<app-add-contact [selectedContact]="selectedContact"></app-add-contact>
+<app-display-contact (editingContact)= "editContact($event)"></app-display-contact>

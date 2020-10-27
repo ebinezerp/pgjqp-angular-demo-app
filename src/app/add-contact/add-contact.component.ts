@@ -8,8 +8,9 @@ import { ContactService } from '../service/contact.service';
   templateUrl: './add-contact.component.html',
   styleUrls: ['./add-contact.component.css']
 })
-export class AddContactComponent implements OnInit {
+export class AddContactComponent implements OnInit, OnChanges {
 
+  @Input() selectedContact: Contact = new Contact();
   contact: Contact;
   edit: boolean;
 
@@ -19,9 +20,17 @@ export class AddContactComponent implements OnInit {
     this.edit = false;
    }
 
+   ngOnInit(): void {
+  }
 
-
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    this.contact.name = this.selectedContact.name;
+    this.contact.email = this.selectedContact.email;
+    this.contact.mobile = this.selectedContact.mobile;
+    console.log(this.selectedContact.email);
+    if ( this.selectedContact.email != undefined){
+      this.edit = true;
+    }
   }
 
   addContact(contactForm: NgForm): void {
@@ -32,7 +41,9 @@ export class AddContactComponent implements OnInit {
 
   updateContact(contactForm: NgForm): void{
     const contact: Contact = contactForm.value;
+    this.contactService.update(contact);
     contactForm.resetForm();
+    this.edit = false;
   }
 
 }

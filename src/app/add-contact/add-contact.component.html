@@ -15,7 +15,7 @@
     </div>
     <div>
       <label for="email">Email</label>
-      <input [disabled]='edit' [(ngModel)]="contact.email" type="text" name="email" id="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
+      <input [readonly]= "edit" [(ngModel)]="contact.email" type="text" name="email" id="email" required pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" />
     </div>
     <div>
       <label for="mobile">Mobile</label>

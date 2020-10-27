@@ -9,8 +9,8 @@ export class ContactService{
    private contactList: Contact[];
 
    constructor() {
-     const con1 = new Contact('dummy1', 'dummy1@gmail.com', '6786786789');
-     const con2 = new Contact('dummy2', 'dummy2@gmail.com', '9789789789');
+     const con1 = new Contact('dummyone', 'dummy1@gmail.com', '6786786789');
+     const con2 = new Contact('dummytwo', 'dummy2@gmail.com', '9789789789');
      this.contactList = [con1, con2];
    }
 
@@ -26,6 +26,12 @@ export class ContactService{
    // to send contactList to display-contact component
    getContacts(): Contact[] {
      return this.contactList;
+   }
+
+   update(contact: Contact): void {
+    const temp = this.contactList.find(con => con.email === contact.email);
+    const index = this.contactList.indexOf(temp);
+    this.contactList[index] = contact;
    }
 
 }

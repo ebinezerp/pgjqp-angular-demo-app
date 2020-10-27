@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Contact } from '../model/contact';
 import { ContactService } from '../service/contact.service';
 
@@ -10,11 +10,10 @@ import { ContactService } from '../service/contact.service';
 export class DisplayContactComponent implements OnInit {
 
   contactList: Contact[] = [];
-  selectedContact: Contact;
   edit: boolean;
+  @Output() editingContact: EventEmitter<Contact> = new EventEmitter();
 
   constructor(private contactService: ContactService){
-    this.selectedContact = new Contact();
     this.contactList = this.contactService.getContacts();
   }
 
@@ -26,16 +25,8 @@ export class DisplayContactComponent implements OnInit {
   }
 
   editContact(contact: Contact): void {
-    this.selectedContact = contact;
+    this.editingContact.emit(contact);
     this.edit = true;
-  }
-
-  updateContact(contact: Contact): void {
-    const arrayContact =   this.contactList.find(con => con.email === contact.email);
-    const index = this.contactList.indexOf(arrayContact);
-    this.contactList[index] = contact;
-    this.edit = false;
-    this.selectedContact = new Contact();
   }
 
 }
