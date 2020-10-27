@@ -10,7 +10,6 @@ import { ContactService } from '../service/contact.service';
 export class DisplayContactComponent implements OnInit {
 
   contactList: Contact[] = [];
-  edit: boolean;
   @Output() editingContact: EventEmitter<Contact> = new EventEmitter();
 
   constructor(private contactService: ContactService){
@@ -26,7 +25,6 @@ export class DisplayContactComponent implements OnInit {
 
   editContact(contact: Contact): void {
     this.editingContact.emit(contact);
-    this.edit = true;
   }
 
 }
