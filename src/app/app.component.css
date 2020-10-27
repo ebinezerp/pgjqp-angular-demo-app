@@ -5,14 +5,4 @@ header{
   margin-bottom: 2%;
 }
 
-section{
-  margin-top: 2%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-section> table{
-  width: 60%;
-}
 

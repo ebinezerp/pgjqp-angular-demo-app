@@ -4,27 +4,5 @@
   </a>
 </header>
 
-<app-add-contact [edit]="edit" [editContact]="selectedContact" (updatingContact)="updateContact($event)" (addingContact)= "addNewContact($event)"></app-add-contact>
-
-<section>
-  <table border="1" style="border-collapse: collapse;">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Mobile</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let contact of contactList">
-        <td>{{contact.name}}</td>
-        <td>{{contact.email}}</td>
-        <td>{{contact.mobile}}</td>
-        <td><button (click)="editContact(contact)">Edit</button></td>
-        <td><button>Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
-</section>
+<app-add-contact></app-add-contact>
+<app-display-contact></app-display-contact>
