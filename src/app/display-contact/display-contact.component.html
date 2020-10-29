@@ -12,7 +12,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let contact of contactList">
-        <td>{{contact.name}}</td>
+        <!-- <td><a routerLink='/contacts/{{contact.email}}'>{{contact.name}}</a></td> -->
+        <!-- <td><a [routerLink]="['/contacts', contact.email]">{{contact.name}}</a></td> -->
+        <td><a [routerLink]="['/par-contact']" [queryParams] = "{email:contact.email, name:contact.name}">{{contact.name}}</a></td>
         <td>{{contact.email}}</td>
         <td>{{contact.mobile}}</td>
         <td><button (click)="editContact(contact)">Edit</button></td>

@@ -9,9 +9,5 @@ import { Contact } from './model/contact';
 })
 export class AppComponent {
 
-  selectedContact: Contact = new Contact();
-  editContact(contact: Contact): void {
-    this.selectedContact = contact;
-  }
 
 }

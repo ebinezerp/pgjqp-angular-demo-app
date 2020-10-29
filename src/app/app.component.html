@@ -2,7 +2,14 @@
   <a>
     <h1>Phonebook</h1>
   </a>
+  <nav>
+    <ul>
+      <li><a routerLink='/'>Home</a></li>
+      <li><a routerLink="/contacts">Contacts</a></li>
+      <li><a routerLink="/aboutus">AboutUs</a></li>
+      <li><a routerLink="/ourservices">OurServices</a></li>
+    </ul>
+  </nav>
 </header>
 
-<app-add-contact [selectedContact]="selectedContact"></app-add-contact>
-<app-display-contact (editingContact)= "editContact($event)"></app-display-contact>
+<router-outlet></router-outlet>
